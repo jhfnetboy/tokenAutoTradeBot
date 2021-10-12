@@ -1,0 +1,25 @@
+{
+  "name": "pancakeswap-sniping-bot",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrFatoni/pancakeswap-sniping-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MrFatoni/pancakeswap-sniping-bot/issues"
+  },
+  "homepage": "https://github.com/MrFatoni/pancakeswap-sniping-bot#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "dotenv": "^10.0.0",
+    "ethers": "^5.4.7",
+    "express": "^4.17.1"
+  }
+}
