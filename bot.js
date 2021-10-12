@@ -49,7 +49,11 @@ const run = async () => {
   const tokenOut = data.to_PURCHASE;
   console.log("Pls check your token contract out:"+data.to_PURCHASE)
   const pairAddress = await factory.getPair(tokenIn, tokenOut);
-  console.log('Trade pair:'+pairAddress);
+  console.log('Trade pair:'+parseInt(pairAddress,16));
+  if(parseInt(pairAddress,16)==0){
+    console.log("No pair exists,Ctl+C to exit!")
+    return null;
+  }
   let str = myDate.toTimeString(); 
   let timeStr = str.substring(0,8);
   console.log("Waintting for liquidity:",timeStr)
