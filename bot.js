@@ -5,13 +5,13 @@ require('dotenv').config();
 const app = express();
 let myDate = new Date();
 
-// const args = process.argv.slice(2)
-// const tokenWantToBuy = args[0]
+const args = process.argv.slice(2)
+const tokenWantToBuy = args[0]
 
 const data = {
   WBNB: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', //wbnb 
-  // to_PURCHASE: tokenWantToBuy,  // token to purchase = BUSD for test
-  to_PURCHASE: '0xe18841d7a75866688e291703bde66c3378bd74a3',
+  to_PURCHASE: tokenWantToBuy,  // token to purchase = BUSD for test
+  // to_PURCHASE: '0xe18841d7a75866688e291703bde66c3378bd74a3',
   factory: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',  //PancakeSwap V2 factory
   router: '0x10ED43C718714eb63d5aA57B78B54704E256024E', //PancakeSwap V2 router
   recipient: '0xb65dE45A7466765Df13A04029aec63De472F78ce', //wallet address,
