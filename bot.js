@@ -15,7 +15,7 @@ const data = {
   factory: '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73',  //PancakeSwap V2 factory
   router: '0x10ED43C718714eb63d5aA57B78B54704E256024E', //PancakeSwap V2 router
   recipient: '0xb65dE45A7466765Df13A04029aec63De472F78ce', //wallet address,
-  AMOUNT_OF_WBNB : '0.1',
+  AMOUNT_OF_WBNB : '0.25',
   Slippage : '1', //in Percentage
   gasPrice : '5', //in gwei
   gasLimit : '795684' //at least 21000
@@ -49,11 +49,18 @@ const run = async () => {
   const tokenOut = data.to_PURCHASE;
   console.log("Pls check your token contract out:"+data.to_PURCHASE)
   const pairAddress = await factory.getPair(tokenIn, tokenOut);
-  console.log('Trade pair:'+parseInt(pairAddress,16));
-  if(parseInt(pairAddress,16)==0){
-    console.log("No pair exists,Ctl+C to exit!")
-    return null;
-  }
+  console.log('Trade pair:'+pairAddress);
+  try{
+    const hexaddr=parseInt(pairAddress,16);
+    console.log('Trade pair:'+hexaddr);
+    if(hexaddr===0){
+      // ​    console.log("No pair exists,Ctl+C to exit!")
+      // ​    return null;
+      }
+    } catch (err) {
+        console.log("Error: ", err)
+        // throw err
+      }
   let str = myDate.toTimeString(); 
   let timeStr = str.substring(0,8);
   console.log("Waintting for liquidity:",timeStr)
