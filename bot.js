@@ -5,34 +5,19 @@ const chalk =require('chalk');
 const dotenv = require('dotenv');
 const inquirer = require('inquirer');
 
-// import ethers from 'ethers';
-// import express from 'express';
-// import chalk from 'chalk';
-// import dotenv from 'dotenv';
-// import inquirer from 'inquirer';
-
 const app = express();
 dotenv.config();
 
 const data = {
   WBNB: process.env.WBNB_CONTRACT, //wbnb
-
   to_PURCHASE: process.env.TO_PURCHASE, // token that you will purchase = BUSD for test '0xe9e7cea3dedca5984780bafc599bd69add087d56'
-
   AMOUNT_OF_WBNB : process.env.AMOUNT_OF_WBNB, // how much you want to buy in WBNB
-
   factory: process.env.FACTORY,  //PancakeSwap V2 factory
-
   router: process.env.ROUTER, //PancakeSwap V2 router
-
   recipient: process.env.YOUR_ADDRESS, //your wallet address,
-
   Slippage : process.env.SLIPPAGE, //in Percentage
-
   gasPrice : ethers.utils.parseUnits(`${process.env.GWEI}`, 'gwei'), //in gwei
-  
   gasLimit : process.env.GAS_LIMIT, //at least 21000
-
   minBnb : process.env.MIN_LIQUIDITY_ADDED //min liquidity added
 }
 
@@ -48,7 +33,6 @@ const tokenOut = data.to_PURCHASE;
 const provider = new ethers.providers.WebSocketProvider(wss);
 const wallet = new ethers.Wallet(mnemonic);
 const account = wallet.connect(provider);
-
 
 const factory = new ethers.Contract(
   data.factory,
@@ -141,8 +125,8 @@ const run = async () => {
       console.log(chalk.yellow(`data.gasLimit: ${data.gasLimit}`));
       console.log(chalk.yellow(`data.gasPrice: ${data.gasPrice}`));
 
-      const tx = await router.swapExactTokensForTokensSupportingFeeOnTransferTokens( //uncomment this if you want to buy deflationary token
-      // const tx = await router.swapExactTokensForTokens( //uncomment here if you want to buy token
+    //   const tx = await router.swapExactTokensForTokensSupportingFeeOnTransferTokens( //uncomment this if you want to buy deflationary token
+      const tx = await router.swapExactTokensForTokens( //uncomment here if you want to buy token
         amountIn,
         amountOutMin,
         [tokenIn, tokenOut],
