@@ -1,20 +1,19 @@
 /* Example in Node.js ES6 using request-promise */
+// https://coinmarketcap.com/api/documentation/v1/#operation/getV1CryptocurrencyListingsLatest
 // a bot to fetch coinmarketcap data by api
 const rp = require('request-promise');
 const fs = require('fs');
-// const apiTestKey = 'b54bcf4d-1bca-4e8e-9a24-22ff2c3d462c' // for test
 const xlsx = require('node-xlsx');
 
 require('dotenv').config();
 const API_KEY = process.env.COINMARKET_API_KEY;
-// const CONTRACT_ADDRESS = process.env.CONTRACT_ADDRESS;
 
 const requestOptions = {
   method: 'GET',
   uri: '',
   qs: {
     'start': '1',
-    'limit': '30',
+    'limit': '2',
     'convert': 'USD',
     'sort': 'date_added',
     'sort_dir': 'desc'
@@ -29,6 +28,8 @@ const requestOptions = {
 
 async function getData(surl){
   requestOptions.uri= surl
+  console.log(surl)
+  console.log(API_KEY)
   rp(requestOptions).then(response => {
     console.log('API call response:', response);
     // writeFile(response) 
@@ -74,8 +75,10 @@ function writeExcel(d){
           pushD.push(d.data[i].quote.USD.volume_24h)
           pushD.push(d.data[i].date_added)
           pushD.push(d.data[i].max_supply)
-          pushD.push(d.data[i].platform.name)
-          pushD.push(d.data[i].platform.token_address)
+          if(platform){
+            pushD.push(d.data[i].platform.token_address)   
+            pushD.push(d.data[i].platform.name)
+          }
           pushD.push(d.data[i].cmc_rank)
           
           pushD.push(d.data[i].quote.USD.percent_change_1h)
@@ -109,6 +112,7 @@ const surl = '/listings/latest'
 // getData(baseUrl+endPoint+surl).then(data=>(console.log(data)))
 
 getData(baseUrl+endPoint+surl)
+
 
 
 

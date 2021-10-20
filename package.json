@@ -21,6 +21,9 @@
     "dotenv": "^10.0.0",
     "ethers": "^5.4.7",
     "express": "^4.17.1",
-    "inquirer": "^8.2.0"
+    "inquirer": "^8.2.0",
+    "node-xlsx": "^0.17.2",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6"
   }
 }
